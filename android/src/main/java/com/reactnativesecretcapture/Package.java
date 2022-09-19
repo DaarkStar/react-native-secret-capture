@@ -12,13 +12,13 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-public class SecretCapturePackage implements ReactPackage {
+public class Package implements ReactPackage {
 
     @NonNull
     @Override
     public List<NativeModule> createNativeModules(@NonNull ReactApplicationContext reactApplicationContext) {
         List<NativeModule> modules =new ArrayList<>();
-        modules.add(new SecretCaptureModule(reactApplicationContext));
+        modules.add(new Module(reactApplicationContext));
         return modules;
     }
 

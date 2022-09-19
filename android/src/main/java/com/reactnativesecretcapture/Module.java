@@ -27,14 +27,14 @@ import com.facebook.react.bridge.ReactMethod;
 
 import java.util.TreeMap;
 
-public class SecretCaptureModule extends ReactContextBaseJavaModule implements ActivityEventListener,
+public class Module extends ReactContextBaseJavaModule implements ActivityEventListener,
         PictureCapturingListener {
 
     private APictureCapturingService pictureService;
 
     Context context;
 
-    public SecretCaptureModule(ReactApplicationContext context) {
+    public Module(ReactApplicationContext context) {
         super(context);
         this.context = context;
     }
