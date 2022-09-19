@@ -14,6 +14,6 @@ const SecretCapture = NativeModules.SecretCapture  ? NativeModules.SecretCapture
       }
     );
 
-export function captureImage(): String {
-  return SecretCapture.captureImage();
+export function RNSecretCapture() {
+  return SecretCapture;
 }
