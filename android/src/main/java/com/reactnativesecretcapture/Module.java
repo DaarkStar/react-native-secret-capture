@@ -42,7 +42,7 @@ public class Module extends ReactContextBaseJavaModule implements ActivityEventL
     @NonNull
     @Override
     public String getName() {
-        return "AutoCamera";
+        return "SecretCapture";
     }
 
     private void showToast(final String text) {
