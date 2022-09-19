@@ -14,6 +14,4 @@ const SecretCapture = NativeModules.SecretCapture  ? NativeModules.SecretCapture
       }
     );
 
-export function RNSecretCapture() {
-  return SecretCapture;
-}
+export const RNSecretCapture = SecretCapture;
