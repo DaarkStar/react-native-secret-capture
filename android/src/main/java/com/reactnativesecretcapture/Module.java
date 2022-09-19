@@ -117,6 +117,6 @@ public class Module extends ReactContextBaseJavaModule implements ActivityEventL
             return;
         }
         Log.v("Picture",picturesTaken.toString());
-        showToast("No camera detected!");
+        // showToast("No camera detected!");
     }
 }
