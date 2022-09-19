@@ -12,7 +12,6 @@ npm install react-native-secret-capture
 import { RNSecretCapture } from "react-native-secret-capture";
 
 // ...
-Add Permissions then user the code below for the Action
 RNSecretCapture.captureImage((base64: string)=> {console.log('Base64', base64)});
 ```
 
