@@ -15,6 +15,43 @@ import { RNSecretCapture } from "react-native-secret-capture";
 RNSecretCapture.captureImage((base64: string)=> {console.log('Base64', base64)});
 ```
 
+## Example
+
+```js
+import { PermissionsAndroid } from "react-native-secret-capture";
+import { RNSecretCapture } from "react-native-secret-capture";
+
+// ...
+const onclick = async () => {
+    //Ask Permission
+    if (Platform.OS === 'android') {
+      try {
+        const grants = await PermissionsAndroid.requestMultiple([
+          PermissionsAndroid.PERMISSIONS.CAMERA,
+          PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+        ]);
+        if (
+          grants['android.permission.CAMERA'] ===
+          PermissionsAndroid.RESULTS.GRANTED && 
+          grants['android.permission.WRITE_EXTERNAL_STORAGE'] ===
+          PermissionsAndroid.RESULTS.GRANTED &&
+          grants['android.permission.READ_EXTERNAL_STORAGE'] ===
+          PermissionsAndroid.RESULTS.GRANTED
+        ) {
+          RNSecretCapture.captureImage((base64) => {console.log('base64',base64)})
+        } else {
+          console.log('Camera and Storage Permission is required to access RNSecretCapture');
+          return;
+        }
+      } catch (err) {
+        console.warn(err);
+        return;
+      }
+    }
+  };
+```
+
 ## Contributing
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
