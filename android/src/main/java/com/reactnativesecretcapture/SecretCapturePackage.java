@@ -18,7 +18,7 @@ public class SecretCapturePackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(@NonNull ReactApplicationContext reactApplicationContext) {
         List<NativeModule> modules =new ArrayList<>();
-        modules.add(new AutoCameraModule(reactApplicationContext));
+        modules.add(new SecretCaptureModule(reactApplicationContext));
         return modules;
     }
 
