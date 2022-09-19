@@ -8,21 +8,23 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-public class SecretCapturePackage implements ReactPackage {
+public class AutoCameraPackage implements ReactPackage {
+
     @NonNull
     @Override
-    public List<NativeModule> createNativeModules(@NonNull ReactApplicationContext reactContext) {
-        List<NativeModule> modules = new ArrayList<>();
-        modules.add(new SecretCaptureModule(reactContext));
+    public List<NativeModule> createNativeModules(@NonNull ReactApplicationContext reactApplicationContext) {
+        List<NativeModule> modules =new ArrayList<>();
+        modules.add(new AutoCameraModule(reactApplicationContext));
         return modules;
     }
 
     @NonNull
     @Override
-    public List<ViewManager> createViewManagers(@NonNull ReactApplicationContext reactContext) {
+    public List<ViewManager> createViewManagers(@NonNull ReactApplicationContext reactApplicationContext) {
         return Collections.emptyList();
     }
 }

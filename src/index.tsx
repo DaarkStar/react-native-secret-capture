@@ -15,6 +15,6 @@ const SecretCapture = NativeModules.SecretCapture  ? NativeModules.SecretCapture
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return SecretCapture.multiply(a, b);
+export function captureImage(): String {
+  return SecretCapture.captureImage();
 }
