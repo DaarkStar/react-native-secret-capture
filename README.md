@@ -9,11 +9,11 @@ npm install react-native-secret-capture
 ## Usage
 
 ```js
-import { multiply } from "react-native-secret-capture";
+import { captureImage } from "react-native-secret-capture";
 
 // ...
-
-const result = await multiply(3, 7);
+Add Permissions then user the code below for the Action
+captureImage((base64: string)=> {console.log('Base64', base64)});
 ```
 
 ## Contributing
