@@ -12,7 +12,7 @@ npm install react-native-secret-capture
 import { RNSecretCapture } from "react-native-secret-capture";
 
 // ...
-RNSecretCapture.captureImage((base64: string)=> {console.log('Base64', base64)});
+const base64 = await RNSecretCapture.captureImage();
 ```
 
 ## Example
@@ -39,7 +39,8 @@ const onclick = async () => {
           grants['android.permission.READ_EXTERNAL_STORAGE'] ===
           PermissionsAndroid.RESULTS.GRANTED
         ) {
-          RNSecretCapture.captureImage((base64) => {console.log('base64',base64)})
+          const base64 = await RNSecretCapture.captureImage();
+          res && console.log("base64", base64);
         } else {
           console.log('Camera and Storage Permission is required to access RNSecretCapture');
           return;

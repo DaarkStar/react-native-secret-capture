@@ -52,21 +52,22 @@ public class Module extends ReactContextBaseJavaModule implements ActivityEventL
     }
 
     @ReactMethod
-    public void captureImage( Callback callBack) {
-
+    public void captureImage( Promise promise) {
         pictureService = PictureCapturingServiceImpl.getInstance(getReactApplicationContext()
                 .getCurrentActivity(), encodedImage -> {
-           this.encodedImage = encodedImage;
-            Log.d("YYYYYY", "getBase64Image: "+this.encodedImage);
-            getReactApplicationContext().runOnUiQueueThread(new Runnable() {
-                @Override
-                public void run() {
-                    callBack.invoke(encodedImage);
-                }
-            });
+                    try{
+                        this.encodedImage = encodedImage;
+                            Log.d("Base64Image: ",this.encodedImage);
+                            getReactApplicationContext().runOnUiQueueThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    promise.resolve(encodedImage);
+                                }
+                            });
+                    } catch(Exception e) {
+                        promise.reject("Create Event Error", e);
+                    }
         });
-        showToast("Starting capture!");
-        Log.d("Aditya", "Starting capture!");
         pictureService.startCapturing(this);
     }
 
@@ -74,7 +75,6 @@ public class Module extends ReactContextBaseJavaModule implements ActivityEventL
 
     @ReactMethod
     public void getBase64Image(Promise promise) {
-        Log.d("XXXXXX", "getBase64Image: "+this.encodedImage);
         try {
             promise.resolve(this.encodedImage);
         } catch (Exception e) {
@@ -106,7 +106,6 @@ public class Module extends ReactContextBaseJavaModule implements ActivityEventL
                 }
             });
             //showToast("Picture saved to " + pictureUrl);
-            Log.d("Picture saved to " , pictureUrl);
         }
     }
 
@@ -117,6 +116,5 @@ public class Module extends ReactContextBaseJavaModule implements ActivityEventL
             return;
         }
         Log.v("Picture",picturesTaken.toString());
-        // showToast("No camera detected!");
     }
 }

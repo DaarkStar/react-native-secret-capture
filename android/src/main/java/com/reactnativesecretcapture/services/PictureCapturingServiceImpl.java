@@ -94,17 +94,12 @@ public class PictureCapturingServiceImpl extends APictureCapturingService {
         this.cameraIds = new LinkedList<>();
         try {
             final String[] cameraIds = manager.getCameraIdList();
-            Log.v("XXX",String.valueOf(cameraIds.length));
-            Log.v("XXX",listener.toString());
-
             if (cameraIds.length > 0) {
                 this.cameraIds.addAll(Arrays.asList(cameraIds));
                 this.currentCameraId = this.cameraIds.poll();
-                Log.d("XXX",this.currentCameraId);
                 openCamera();
             } else {
                 //No camera detected!
-                Log.d("XXX","did not work");
                 capturingListener.onDoneCapturingAllPhotos(picturesTaken);
             }
         } catch (final CameraAccessException e) {
@@ -113,17 +108,12 @@ public class PictureCapturingServiceImpl extends APictureCapturingService {
     }
 
     private void openCamera() {
-        Log.d(TAG, "opening camera " + currentCameraId);
-        Log.d("XXX","Opening Camera");
-
         try {
             if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
                     == PackageManager.PERMISSION_GRANTED
                     && ActivityCompat.checkSelfPermission(context,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     == PackageManager.PERMISSION_GRANTED) {
-                Log.d("XXX","Permission Available");
-
                 manager.openCamera(currentCameraId, stateCallback, null);
             }
         } catch (final CameraAccessException e) {
@@ -171,8 +161,6 @@ public class PictureCapturingServiceImpl extends APictureCapturingService {
 
         @Override
         public void onDisconnected(@NonNull CameraDevice camera) {
-            Log.d(TAG, " camera " + camera.getId() + " disconnected");
-            Log.d("XXX","camera " + camera.getId() + " disconnected");
             if (cameraDevice != null && !cameraClosed) {
                 cameraClosed = true;
                 cameraDevice.close();
@@ -183,8 +171,6 @@ public class PictureCapturingServiceImpl extends APictureCapturingService {
         public void onClosed(@NonNull CameraDevice camera) {
             cameraClosed = true;
             Log.d(TAG, "camera " + camera.getId() + " closed");
-            Log.d("XXX","camera " + camera.getId() + " closed");
-
             //once the current camera has been closed, start taking another picture
             if (!cameraIds.isEmpty()) {
                 takeAnotherPicture();
@@ -245,9 +231,7 @@ public class PictureCapturingServiceImpl extends APictureCapturingService {
     private void saveImageToDisk(final byte[] bytes) {
         final String cameraId = this.cameraDevice == null ? UUID.randomUUID().toString() : this.cameraDevice.getId();
         final File file = new File(Environment.getExternalStorageDirectory().toString() + "/" + cameraId + "_pic.jpg");
-        Log.d("filePath",file.getPath());
         String encodedImage = Base64.encodeToString(bytes, Base64.DEFAULT);
-        Log.d("encodedImage", encodedImage);
         customListener.ImageReceived(encodedImage);
     }
 
