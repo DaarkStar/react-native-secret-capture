@@ -18,7 +18,7 @@ public class RNSCPackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(@NonNull ReactApplicationContext reactApplicationContext) {
         List<NativeModule> modules =new ArrayList<>();
-        modules.add(new Module(reactApplicationContext));
+        modules.add(new RNSCModule(reactApplicationContext));
         return modules;
     }
 
