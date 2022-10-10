@@ -34,7 +34,7 @@ public class RNSCModule extends ReactContextBaseJavaModule implements ActivityEv
 
     Context context;
 
-    public RNSCModule(ReactApplicationContext context) {
+    public Module(ReactApplicationContext context) {
         super(context);
         this.context = context;
     }
