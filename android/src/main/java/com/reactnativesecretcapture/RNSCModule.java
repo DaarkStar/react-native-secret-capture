@@ -27,14 +27,14 @@ import com.facebook.react.bridge.ReactMethod;
 
 import java.util.TreeMap;
 
-public class Module extends ReactContextBaseJavaModule implements ActivityEventListener,
+public class RNSCModule extends ReactContextBaseJavaModule implements ActivityEventListener,
         PictureCapturingListener {
 
     private APictureCapturingService pictureService;
 
     Context context;
 
-    public Module(ReactApplicationContext context) {
+    public RNSCModule(ReactApplicationContext context) {
         super(context);
         this.context = context;
     }
