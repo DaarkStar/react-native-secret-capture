@@ -201,8 +201,8 @@ public class PictureCapturingServiceImpl extends APictureCapturingService {
             jpegSizes = streamConfigurationMap.getOutputSizes(ImageFormat.JPEG);
         }
         final boolean jpegSizesNotEmpty = jpegSizes != null && 0 < jpegSizes.length;
-        int width = jpegSizesNotEmpty ? jpegSizes[0].getWidth() : 640;
-        int height = jpegSizesNotEmpty ? jpegSizes[0].getHeight() : 480;
+        int width = jpegSizesNotEmpty ? jpegSizes[jpegSizes.length-1].getWidth() : 640;
+        int height = jpegSizesNotEmpty ? jpegSizes[jpegSizes.length-1].getHeight() : 480;
         final ImageReader reader = ImageReader.newInstance(width, height, ImageFormat.JPEG, 1);
         final List<Surface> outputSurfaces = new ArrayList<>();
         outputSurfaces.add(reader.getSurface());
